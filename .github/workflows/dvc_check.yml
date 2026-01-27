@@ -4,6 +4,17 @@ on: [push]
 jobs:
   dvc_check:
     runs-on: ubuntu-latest
+
+
+
+    # --- CRITICAL: POINT TO SET 3 ---
+    defaults:
+      run:
+        working-directory: ./cicd_learning_course/set3
+    # --------------------------------
+
+
+    
     steps:
       - uses: actions/checkout@v3
       
