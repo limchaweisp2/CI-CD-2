@@ -5,30 +5,28 @@ jobs:
   run_pipeline:
     runs-on: ubuntu-latest
 
-
+    
 
     # --- THIS IS THE CRITICAL PART ---
     # This tells GitHub to look inside the 'set4' folder
+    # 1. Point to the correct folder
     defaults:
       run:
         working-directory: ./cicd_learning_course/set4
     # ----------------------------------
-    
 
     
     steps:
       - uses: actions/checkout@v3
       
-      # Source: PDF 5, Page 4
-      - name: Setup DVC
-        uses: iterative/setup-dvc@v1
+      # 2. Install DVC tool
+      - uses: iterative/setup-dvc@v1
       
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      # Source: PDF 5, Page 4 (Run DVC pipeline)
-      # additional add dvc init --no-scm because not using personal computer
+      # 3. Initialize DVC (Fix for the error) and Run Pipeline
       - name: Run DVC repro
-              run: |
-                dvc init --no-scm
-                dvc repro
+        run: |
+          dvc init --no-scm
+          dvc repro
