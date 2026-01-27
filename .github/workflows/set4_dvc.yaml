@@ -1,0 +1,18 @@
+stages:
+  # Source: PDF 4, Page 33 (Defining pipeline stages)
+  preprocess:
+    cmd: python preprocess.py
+    deps:
+      - preprocess.py
+      - weather.csv
+    outs:
+      - processed_data.csv
+  
+  # Source: PDF 4, Page 34 (Dependency graphs)
+  train:
+    cmd: python train.py
+    deps:
+      - processed_data.csv
+      - train.py
+    outs:
+      - plots.png
