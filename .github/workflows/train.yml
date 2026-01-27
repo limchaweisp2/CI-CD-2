@@ -8,10 +8,13 @@ jobs:
 
 
 
-    # ADD THIS SECTION
+    # --- THIS IS THE CRITICAL PART FOR SET 2 ---
     defaults:
       run:
         working-directory: ./cicd_learning_course/set2
+    # -------------------------------------------
+
+
 
 
     steps:
