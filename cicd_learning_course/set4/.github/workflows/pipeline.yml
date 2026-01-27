@@ -1,0 +1,20 @@
+name: Run DVC Pipeline
+on: [push]
+
+jobs:
+  run_pipeline:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      # Source: PDF 5, Page 4
+      - name: Setup DVC
+        uses: iterative/setup-dvc@v1
+      
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      # Source: PDF 5, Page 4 (Run DVC pipeline)
+      - name: Run DVC repro
+        # In a real scenario, you would need 'dvc pull' here first
+        run: dvc repro

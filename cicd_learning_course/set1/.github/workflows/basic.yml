@@ -1,0 +1,22 @@
+# Source: PDF 1, Page 38 (Putting it together)
+name: Basic CI Setup
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # Source: PDF 1, Page 37 (Checking out repository)
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      # Source: PDF 1, Page 37 (Setting up python)
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.9
+
+      # Source: PDF 1, Page 38 (Running the script)
+      - name: Run Python script
+        run: |
+          python hello_world.py
