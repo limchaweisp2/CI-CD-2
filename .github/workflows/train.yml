@@ -1,0 +1,17 @@
+name: Train Model
+on: [push]
+
+jobs:
+  train:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: 3.9
+      
+      # Source: PDF 3, Page 10 (CML Commands / Training Steps)
+      - name: Train model
+        run: |
+          pip install -r requirements.txt
+          python3 train.py
