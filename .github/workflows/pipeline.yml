@@ -27,6 +27,8 @@ jobs:
         run: pip install -r requirements.txt
 
       # Source: PDF 5, Page 4 (Run DVC pipeline)
+      # additional add dvc init --no-scm because not using personal computer
       - name: Run DVC repro
-        # In a real scenario, you would need 'dvc pull' here first
-        run: dvc repro
+              run: |
+                dvc init --no-scm
+                dvc repro
