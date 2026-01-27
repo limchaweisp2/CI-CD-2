@@ -5,6 +5,18 @@ on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
+
+
+
+    # --- THIS IS THE CRITICAL PART ---
+    # This tells GitHub to look inside the 'set1' folder
+    defaults:
+      run:
+        working-directory: ./cicd_learning_course/set1
+    # ----------------------------------
+
+
+    
     steps:
       # Source: PDF 1, Page 37 (Checking out repository)
       - name: Checkout
