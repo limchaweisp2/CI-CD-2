@@ -4,6 +4,18 @@ on: [push]
 jobs:
   run_pipeline:
     runs-on: ubuntu-latest
+
+
+
+    # --- THIS IS THE CRITICAL PART ---
+    # This tells GitHub to look inside the 'set4' folder
+    defaults:
+      run:
+        working-directory: ./cicd_learning_course/set4
+    # ----------------------------------
+    
+
+    
     steps:
       - uses: actions/checkout@v3
       
