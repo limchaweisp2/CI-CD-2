@@ -1,0 +1,15 @@
+name: DVC Setup Check
+on: [push]
+
+jobs:
+  dvc_check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      # Source: PDF 5, Page 4 (Setting up DVC Github Action)
+      - name: Setup DVC
+        uses: iterative/setup-dvc@v1
+      
+      - name: Check DVC installation
+        run: dvc doctor
