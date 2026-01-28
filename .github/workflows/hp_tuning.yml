@@ -5,48 +5,47 @@
 
 
 
+# set5 codes -----------------START---------------------
+# name: HP Tuning
+# on: [push]
 
-<!--
-name: HP Tuning
-on: [push]
+# permissions:
+#   # Source: PDF 5, Page 25 and 49 (Setup workflow permissions)
+#   contents: write
+#   pull-requests: write
 
-permissions:
-  # Source: PDF 5, Page 25 and 49 (Setup workflow permissions)
-  contents: write
-  pull-requests: write
-
-jobs:
-  hp_tune_and_publish_report:
-    runs-on: ubuntu-latest
-    # Source: PDF 5, Page 24 (Setting conditionals for branch name)
-    if: startsWith(github.head_ref, 'hp_tune/')
-    steps:
-      - uses: actions/checkout@v3
+# jobs:
+#   hp_tune_and_publish_report:
+#     runs-on: ubuntu-latest
+#     # Source: PDF 5, Page 24 (Setting conditionals for branch name)
+#     if: startsWith(github.head_ref, 'hp_tune/')
+#     steps:
+#       - uses: actions/checkout@v3
       
-      # Source: PDF 5, Page 4 (Setup DVC)
-      - uses: iterative/setup-dvc@v1
-      # Source: PDF 5, Page 10 (Setup CML)
-      - uses: iterative/setup-cml@v1
+#       # Source: PDF 5, Page 4 (Setup DVC)
+#       - uses: iterative/setup-dvc@v1
+#       # Source: PDF 5, Page 10 (Setup CML)
+#       - uses: iterative/setup-cml@v1
       
-      - name: Install dependencies
-        run: pip install -r requirements.txt
+#       - name: Install dependencies
+#         run: pip install -r requirements.txt
 
-      # Source: PDF 5, Page 24 (Running logic)
-      - name: Run HP Tuning
-        run: dvc repro -f hp_tune
+#       # Source: PDF 5, Page 24 (Running logic)
+#       - name: Run HP Tuning
+#         run: dvc repro -f hp_tune
 
-      # Source: PDF 5, Page 28 (Creating a training PR)
-      - name: Create training branch
-        env:
-          # Source: PDF 5, Page 28 (Using Secrets)
-          REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          export BRANCH_NAME=train/$(git rev-parse --short "${{ github.sha }}")
+#       # Source: PDF 5, Page 28 (Creating a training PR)
+#       - name: Create training branch
+#         env:
+#           # Source: PDF 5, Page 28 (Using Secrets)
+#           REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#         run: |
+#           export BRANCH_NAME=train/$(git rev-parse --short "${{ github.sha }}")
           
-          # Source: PDF 5, Page 28 (CML Command)
-          cml pr create \
-            --message "Hyperparameter tuning result" \
-            --branch $BRANCH_NAME \
-            --target-branch main \
-            rfc_best_params.json
--->
+#           # Source: PDF 5, Page 28 (CML Command)
+#           cml pr create \
+#             --message "Hyperparameter tuning result" \
+#             --branch $BRANCH_NAME \
+#             --target-branch main \
+#             rfc_best_params.json
+# set5 codes -----------------END-------------------
