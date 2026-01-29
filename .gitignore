@@ -1,0 +1,6 @@
+.dvc/
+__pycache__/
+*.lock
+processed_data.csv
+plots.png
+rfc_best_params.json
