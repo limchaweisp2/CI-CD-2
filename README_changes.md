@@ -6,6 +6,7 @@ I have implemented the following changes to resolve the errors in the hp_tune/ex
 1. Workflow Trigger Update (.github/workflows/hp_tuning.yml)
 
 Change: Changed github.head_ref to github.ref in the workflow's if condition.
+
 Reason: The variable github.head_ref is only populated during pull_request events. Since your workflow is triggered by a push, github.head_ref was empty, causing the job to be skipped. Using github.ref (which looks like refs/heads/hp_tune/...) ensures the workflow correctly identifies and runs on your experimental branches.
 3. DVC Initialization in CI (.github/workflows/hp_tuning.yml)
 Change: Added dvc init --no-scm -f before running dvc repro.
