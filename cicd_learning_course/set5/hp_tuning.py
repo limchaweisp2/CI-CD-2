@@ -15,9 +15,10 @@ if 'Date' in data.columns:
 data = data.fillna(0)
 
 # 2. Simple encoding for other text columns (Location, WindDir, etc.)
-for col in data.columns:
-    if data[col].dtype == 'object' or data[col].dtype == 'string':
-        data[col] = data[col].astype('category').cat.codes
+# Updated to include 'string' dtype for Pandas 3.0 compatibility
+categorical_cols = data.select_dtypes(include=['object', 'string', 'category']).columns
+for col in categorical_cols:
+    data[col] = data[col].astype('category').cat.codes
 
 # 3. Prepare Features and Target
 X = data.drop('RainTomorrow', axis=1)
