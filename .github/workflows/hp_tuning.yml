@@ -25,7 +25,7 @@ jobs:
 
     
     # Source: PDF 5, Page 24 (Setting conditionals for branch name)
-    if: startsWith(github.head_ref, 'hp_tune/')
+    if: startsWith(github.ref, 'refs/heads/hp_tune/')
     steps:
       - uses: actions/checkout@v3
       
@@ -39,7 +39,9 @@ jobs:
 
       # Source: PDF 5, Page 24 (Running logic)
       - name: Run HP Tuning
-        run: dvc repro -f hp_tune
+        run: |
+          dvc init --no-scm
+          dvc repro -f hp_tune
 
       # Source: PDF 5, Page 28 (Creating a training PR)
       - name: Create training branch
