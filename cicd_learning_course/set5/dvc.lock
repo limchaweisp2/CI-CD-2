@@ -1,0 +1,22 @@
+schema: '2.0'
+stages:
+  hp_tune:
+    cmd: python hp_tuning.py
+    deps:
+    - path: hp_config.json
+      hash: md5
+      md5: cc6e386c6619451d8078a90ea19b5941
+      size: 87
+    - path: hp_tuning.py
+      hash: md5
+      md5: a4c4c162bc292f83ef3e4b6fb9c76d49
+      size: 2260
+    - path: weather.csv
+      hash: md5
+      md5: 3c25d0720aab622f7fe01991b8ffa4c2
+      size: 536
+    outs:
+    - path: rfc_best_params.json
+      hash: md5
+      md5: 018e92427ce9146a76311f8629ca74a1
+      size: 58
